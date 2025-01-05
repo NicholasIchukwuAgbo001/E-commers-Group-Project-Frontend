@@ -1,0 +1,26 @@
+STAGE ONE
+1. collect three side of a triangle
+2. calculate all side
+3. display result
+
+STAGE TWO
+1. prompt user side one of a triangle
+2. collect side one of a triangle
+3. store side one of a triangle
+4. prompt user side two of a triangle
+5. collect side two of a triangle
+6. store side two of a triangle
+7. prompt user side three of a triangle
+8. collect side three of a triangle
+9. store side three of a triangle 
+10. to get svalue add all sides of a triangle side one + side two + side three
+11. collect summed number
+12. divide summed number summed number / 2
+13. collect result
+14. store result as svalue
+15. calculate area by subtracting svalue from all side of a triangle(svalue - side one)(svalue - sidetwo)(svalue - side three)
+16. collect subtracted value
+17. store subtracted value
+18. square root subtracted value
+19. collect area
+20. store area

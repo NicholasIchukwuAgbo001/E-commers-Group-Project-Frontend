@@ -1,0 +1,31 @@
+  STAGE ONE
+1. collect numbers
+2. determine sum, average, product, smallest, largst
+3. display results
+
+
+STAGE TWO
+1. proompt user for number1
+2. collect number1
+3. store number1
+4. proompt user for number2
+5. collect number2
+6. store number2
+7. proompt user for number3
+8. collect number3
+9. store number3
+10. calculate sum of number1 + number2 + number3
+11. store result sum
+12. calculate average sum / total numbers
+13. store result average
+14. calculate product of number1 * number2 * number3
+15. store result product
+16. check for smallest by comparing number1,number2,number3
+17. store smallest
+18. check for largest by comparing number1,number2,number3
+19. store result largest
+20. display sum
+21. display average
+22. display product
+23. display smallest
+24. display highest

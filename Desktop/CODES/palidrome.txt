@@ -1,0 +1,21 @@
+STAGE ONE
+1. read three digit number
+2. determine if three digit number is a palindrome
+3. display result
+
+  STAGE TWO
+1. prompt user to input three digit number
+2. collect three digit number
+3. store three digit number
+4. extract hundreds digit by dividing three digit number by 10 to get place digit
+5. extract the remainder by using three digit number % 10
+6.collect first digit 
+7.store first digit
+8.extract tens digit by dividing place digit % 10
+9. collect second number
+10. to get the remainder place digit % 10
+11. collect third digit
+12. store third digit
+13. compare third digit with first digit
+14. display if three digit is a palindrome
+15. display if three digit number is not a palindrome
