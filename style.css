@@ -271,12 +271,13 @@ body {
 footer {
   background-color: #000;
   color: #fff;
-  padding: 20px 30px;
+  padding: 30px;
 }
 
 .main-footer{
   display: flex;
   justify-content: space-between;
+  padding-bottom: 20px;
 }
 
 
@@ -305,4 +306,17 @@ footer {
 
 .footer-text ul li a:hover {
   text-decoration: underline;
+}
+
+.social-media h4{
+  padding: 10px 0;
+}
+
+.social-icons{
+  display: flex;
+  gap: 20px;
+}
+
+.social-icons-main{
+  font-size: 30px;
 }
