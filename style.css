@@ -308,8 +308,13 @@ footer {
   text-decoration: underline;
 }
 
-.social-media h4{
-  padding: 10px 0;
+.logos-footer{
+  display: flex;
+  justify-content: space-between;
+}
+
+.social-media-logo h4{
+  padding: 15px 0;
 }
 
 .social-icons{
@@ -319,4 +324,19 @@ footer {
 
 .social-icons-main{
   font-size: 30px;
+}
+
+.payment-images h4  {
+  padding: 15px 13px;
+}
+
+.payment-img-box {
+  display: flex;
+  gap: 10px;
+}
+
+.payment-img-box img {
+  width: 70px;
+  height: 30px;
+  object-fit: contain;
 }
