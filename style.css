@@ -268,9 +268,41 @@ body {
   background-color: #e0e0e0;
 }
 
-#footer {
+footer {
   background-color: #000;
   color: #fff;
   padding: 20px 30px;
-  height:  300px;
+}
+
+.main-footer{
+  display: flex;
+  justify-content: space-between;
+}
+
+
+.footer-text h3 {
+  font-size: 16px;
+  color: #fff;
+  padding: 10px 0;
+  font-weight: 700;
+}
+
+.footer-text ul {
+  list-style: none;
+}
+
+.footer-text ul li {
+  text-decoration: none;
+  padding: 5px 0;
+}
+
+.footer-text ul li a {
+  color: #ccc;
+  font-size: 14px;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.footer-text ul li a:hover {
+  text-decoration: underline;
 }
