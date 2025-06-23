@@ -268,10 +268,34 @@ body {
   background-color: #e0e0e0;
 }
 
+.see-more-btn {
+  display: block;
+  margin: 2rem auto;
+  padding: 20px 50px;
+  background-color: #ff6f00;
+  color: #fff;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+}
+
+.see-more-btn:hover {
+  background-color: #d85c0a;
+  transform: translateY(-2px);
+}
+
+.see-more-btn:active {
+  transform: scale(0.97);
+}
+
 footer {
   background-color: #000;
   color: #fff;
-  padding: 30px;
+  padding: 30px 30px 0px 30px;
 }
 
 .main-footer{
@@ -311,6 +335,8 @@ footer {
 .logos-footer{
   display: flex;
   justify-content: space-between;
+  border-bottom: 1px solid #444;
+  padding-bottom: 40px;
 }
 
 .social-media-logo h4{
@@ -339,4 +365,11 @@ footer {
   width: 70px;
   height: 30px;
   object-fit: contain;
+}
+
+.copy-right {
+  text-align: center;
+  padding: 15px 0;
+  font-size: 14px;
+  color: #ccc;
 }
