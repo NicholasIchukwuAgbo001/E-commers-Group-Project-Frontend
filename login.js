@@ -12,6 +12,8 @@ window.switchForm = (form) => {
 
 signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+
+  const name = document.getElementById("signup-name").value.trim();
   const email = signupForm["signup-email"].value.trim();
   const password = signupForm["signup-password"].value;
   const confirmPassword = signupForm["signup-confirm-password"].value;
@@ -23,21 +25,22 @@ signupForm.addEventListener("submit", async (e) => {
   }
 
   try {
-    const response = await fetch(`${BACKEND_URL}/api/auth/signup`, {
+    const response = await fetch(`${BACKEND_URL}/api/users/register`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email, password }),
+      body: JSON.stringify({ name, email, password }),
     });
 
-    const data = await response.json();
+    const text = await response.text();
+    const data = text ? JSON.parse(text) : {};
 
-    if (response.ok) {
+    if (response.ok && data.success) {
       signupMsg.textContent = "Signup successful—please log in.";
       signupMsg.className = "message-container success";
       signupForm.reset();
       switchForm("login");
     } else {
-      signupMsg.textContent = data.message || "Signup failed.";
+      signupMsg.textContent = data.data || "Signup failed.";
       signupMsg.className = "message-container error";
     }
   } catch (err) {
@@ -48,6 +51,7 @@ signupForm.addEventListener("submit", async (e) => {
 
 loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
+
   const email = loginForm["login-email"].value.trim();
   const password = loginForm["login-password"].value;
 
@@ -58,7 +62,7 @@ loginForm.addEventListener("submit", async (e) => {
   }
 
   try {
-    const response = await fetch(`${BACKEND_URL}/api/auth/login`, {
+    const response = await fetch(`${BACKEND_URL}/api/users/login`, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ email, password }),
@@ -67,10 +71,11 @@ loginForm.addEventListener("submit", async (e) => {
     const data = await response.json();
 
     if (response.ok && data.success) {
-      localStorage.setItem("currentUser", JSON.stringify({ id: data.id, email: data.email, name: data.name }));
-      window.location.href = "index.html";
+      const { id, name, email } = data.data;
+      localStorage.setItem("currentUser", JSON.stringify({ id, name, email }));
+      window.location.href = "index.html"; 
     } else {
-      loginMsg.textContent = data.message || "Invalid email or password.";
+      loginMsg.textContent = data.data || "Invalid email or password.";
       loginMsg.className = "message-container error";
     }
   } catch (err) {
