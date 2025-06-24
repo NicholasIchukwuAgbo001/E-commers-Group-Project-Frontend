@@ -1,3 +1,4 @@
+const BACKEND_URL = "http://localhost:1111";
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
 const loginMsg = document.getElementById("login-message-container");
@@ -9,47 +10,71 @@ window.switchForm = (form) => {
   loginMsg.textContent = signupMsg.textContent = "";
 };
 
-const getUsers = () => JSON.parse(localStorage.getItem("users") || "[]");
-const saveUsers = (u) => localStorage.setItem("users", JSON.stringify(u));
-
-signupForm.addEventListener("submit", e => {
+signupForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = signupForm["signup-email"].value.trim();
-  const pw = signupForm["signup-password"].value;
-  const cpw = signupForm["signup-confirm-password"].value;
+  const password = signupForm["signup-password"].value;
+  const confirmPassword = signupForm["signup-confirm-password"].value;
 
-  if (pw !== cpw) {
+  if (password !== confirmPassword) {
     signupMsg.textContent = "Passwords do not match.";
     signupMsg.className = "message-container error";
     return;
   }
-  const users = getUsers();
-  if (users.find(u => u.email === email)) {
-    signupMsg.textContent = "Email already registered.";
+
+  try {
+    const response = await fetch(`${BACKEND_URL}/api/auth/signup`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok) {
+      signupMsg.textContent = "Signup successful—please log in.";
+      signupMsg.className = "message-container success";
+      signupForm.reset();
+      switchForm("login");
+    } else {
+      signupMsg.textContent = data.message || "Signup failed.";
+      signupMsg.className = "message-container error";
+    }
+  } catch (err) {
+    signupMsg.textContent = "Signup error: " + err.message;
     signupMsg.className = "message-container error";
-    return;
   }
-  users.push({ email, password: pw });
-  saveUsers(users);
-  signupMsg.textContent = "Signup successful—please log in.";
-  signupMsg.className = "message-container success";
-  signupForm.reset();
-  switchForm("login");
 });
 
-loginForm.addEventListener("submit", e => {
+loginForm.addEventListener("submit", async (e) => {
   e.preventDefault();
   const email = loginForm["login-email"].value.trim();
-  const pw = loginForm["login-password"].value;
-  const users = getUsers();
-  const me = users.find(u => u.email === email && u.password === pw);
+  const password = loginForm["login-password"].value;
 
-  if (!me) {
-    loginMsg.textContent = "Invalid email or password.";
+  if (!email || !password) {
+    loginMsg.textContent = "Please enter both email and password.";
     loginMsg.className = "message-container error";
     return;
   }
-  
-  localStorage.setItem("currentUser", JSON.stringify({ email: me.email }));
-  window.location.href = "index.html";
+
+  try {
+    const response = await fetch(`${BACKEND_URL}/api/auth/login`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email, password }),
+    });
+
+    const data = await response.json();
+
+    if (response.ok && data.success) {
+      localStorage.setItem("currentUser", JSON.stringify({ id: data.id, email: data.email, name: data.name }));
+      window.location.href = "index.html";
+    } else {
+      loginMsg.textContent = data.message || "Invalid email or password.";
+      loginMsg.className = "message-container error";
+    }
+  } catch (err) {
+    loginMsg.textContent = "Login error: " + err.message;
+    loginMsg.className = "message-container error";
+  }
 });
