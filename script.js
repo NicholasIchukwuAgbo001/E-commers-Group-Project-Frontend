@@ -54,7 +54,7 @@ function displayProducts(products) {
 imagesBox.addEventListener("click", e => {
   if (e.target.closest(".cart-icon-img")) {
     if (!currentUser) {
-      alert("🚫 Please login to add items to cart.");
+      alert("Please login to add items to cart");
       return;
     }
     alert("🛒 Added to cart!");
