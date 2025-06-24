@@ -1,4 +1,4 @@
-const PRODUCT_URL = "https://dummyjson.com/products?limit=102";
+const PRODUCT_URL = "https://dummyjson.com/products?limit=84";
 const imagesBox = document.querySelector(".images-box");
 const searchBar = document.querySelector(".search-bar input");
 
@@ -32,7 +32,7 @@ const displayProducts = (products) => {
     };
 
     productCard.innerHTML = `
-      <div class="cart-icon">🛒</div>
+      <div class="cart-icon-img"><ion-icon name="cart-outline"></ion-icon></div>
       ${img.outerHTML}
       <div class="categoryAndPrice">
         <p>${category}</p>
@@ -49,7 +49,7 @@ const displayProducts = (products) => {
 };
 
 imagesBox.addEventListener("click", (e) => {
-  if (e.target.classList.contains("cart-icon")) {
+  if (e.target.closest(".cart-icon-img")) {
     alert("🛒 Product added to cart!");
   }
 });

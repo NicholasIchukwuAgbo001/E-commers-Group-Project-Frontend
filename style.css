@@ -227,14 +227,25 @@ body {
 
 .categoryAndPrice p {
   color: #333;
-  font-weight: 500;
-  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
   text-transform: capitalize;
+  padding: 4px 8px;
+  background-color: #28ee6a;
+  transition: background-color 0.3s ease;
+}
+
+.categoryAndPrice p:hover {
+  background-color: #1ecb5c;
 }
 
 .categoryAndPrice span {
-  color: #e67e22;
-  font-weight: bold;
+  color: #FAFAFA;
+  font-size: 14px;
+  font-weight: 700;
+  padding: 4px 8px;
+  border-radius: 4px;
+  background-color: #e67e22;
 }
 
 .product-rating {
@@ -251,21 +262,22 @@ body {
   border: 1px solid #d63031;
 }
 
-.shopping-cart-icon {
+.cart-icon-img{
   position: absolute;
-  top: 8px;
-  right: 8px;
-  background-color: #FAFAFA;
+  top: 10px;
+  right: 10px;
+  width: 35px;
+  height: 35px;
+  background-color: #fff;
   border-radius: 50%;
-  padding: 6px;
-  cursor: pointer;
-  font-size: 16px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  transition: background 0.3s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.shopping-cart-icon:hover {
-  background-color: #e0e0e0;
+.cart-icon-img:hover {
+  background-color: #f0f0f0;
 }
 
 .see-more-btn {
