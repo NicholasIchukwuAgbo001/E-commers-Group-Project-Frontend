@@ -1,6 +1,9 @@
 const PRODUCT_URL = "https://dummyjson.com/products?limit=84";
 const imagesBox = document.querySelector(".images-box");
 const searchBar = document.querySelector(".search-bar input");
+const cartCountSpan = document.querySelector(".cart-box span");
+
+let cartCount = 0;
 
 const fetchProducts = async (url) => {
   try {
@@ -48,23 +51,24 @@ const displayProducts = (products) => {
   });
 };
 
+function updateCartCount() {
+  cartCount++;
+  cartCountSpan.textContent = cartCount;
+}
+
 imagesBox.addEventListener("click", (e) => {
   if (e.target.closest(".cart-icon-img")) {
     alert("🛒 Product added to cart!");
+    updateCartCount();
   }
 });
 
 searchBar.addEventListener("input", (event) => {
-  event.preventDefault(); 
   const searchTerm = event.target.value.toLowerCase();
   const productCards = imagesBox.querySelectorAll(".product-card");
 
   productCards.forEach((card) => {
     const category = card.querySelector(".categoryAndPrice p").textContent.toLowerCase();
-    if (category.includes(searchTerm)) {
-      card.style.display = "block";
-    } else {
-      card.style.display = "none";
-    }
+    card.style.display = category.includes(searchTerm) ? "block" : "none";
   });
 });
