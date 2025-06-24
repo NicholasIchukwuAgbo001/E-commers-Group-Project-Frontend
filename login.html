@@ -9,33 +9,35 @@
 <body>
   <div class="container">
     <div id="access-container">
-        
+      
       <form id="login-form" class="access-form active">
         <h2>Login</h2>
         <p>Welcome back! Please login and start shopping.</p>
-        <input type="email" id="login-email" placeholder="Email" required />
-        <input type="password" id="login-password" placeholder="Password" required />
+        <input type="email" id="login-email" name="email" placeholder="Email" required />
+        <input type="password" id="login-password" name="password" placeholder="Password" required />
         <button type="submit">Login</button>
         <div id="login-message-container" class="message-container"></div>
         <p>
           Don't have an account?
-          <a href="#" onclick="switchForm('signup')">Sign Up</a>
+          <a href="#" onclick="switchForm('signup'); return false;">Sign Up</a>
         </p>
       </form>
 
+
       <form id="signup-form" class="access-form">
         <h2>Sign Up</h2>
-        <input type="text" id="signup-name" placeholder="Your name" required />
-        <input type="email" id="signup-email" placeholder="Email" required />
-        <input type="password" id="signup-password" placeholder="Password" required />
+        <input type="text" id="signup-name" name="name" placeholder="Your name" required />
+        <input type="email" id="signup-email" name="email" placeholder="Email" required />
+        <input type="password" id="signup-password" name="password" placeholder="Password" required />
         <input type="password" id="signup-confirm-password" placeholder="Confirm Password" required />
         <button type="submit">Sign Up</button>
         <div id="signup-message-container" class="message-container"></div>
         <p>
           Already have an account?
-          <a href="#" onclick="switchForm('login')">Login</a>
+          <a href="#" onclick="switchForm('login'); return false;">Login</a>
         </p>
       </form>
+
     </div>
   </div>
 

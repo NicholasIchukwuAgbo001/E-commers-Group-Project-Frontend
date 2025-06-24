@@ -1,4 +1,5 @@
 const BACKEND_URL = "http://localhost:1111";
+
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
 const loginMsg = document.getElementById("login-message-container");
@@ -10,19 +11,38 @@ window.switchForm = (form) => {
   loginMsg.textContent = signupMsg.textContent = "";
 };
 
-signupForm.addEventListener("submit", async (e) => {
+function showMessage(msgEl, message, type = "error") {
+  msgEl.textContent = message;
+  msgEl.className = `message-container ${type}`;
+  setTimeout(() => {
+    msgEl.textContent = "";
+    msgEl.className = "message-container";
+  }, 5000);
+}
+
+function validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function validatePassword(password) {
+  return password.length >= 4 && password.length <= 16;
+}
+
+async function signup(e) {
   e.preventDefault();
 
-  const name = document.getElementById("signup-name").value.trim();
-  const email = signupForm["signup-email"].value.trim();
-  const password = signupForm["signup-password"].value;
-  const confirmPassword = signupForm["signup-confirm-password"].value;
+  const name = signupForm["signup-name"]?.value.trim();
+  const email = signupForm["signup-email"]?.value.trim();
+  const password = signupForm["signup-password"]?.value.trim();
+  const confirmPassword = signupForm["signup-confirm-password"]?.value.trim();
 
-  if (password !== confirmPassword) {
-    signupMsg.textContent = "Passwords do not match.";
-    signupMsg.className = "message-container error";
-    return;
-  }
+  if (!name) return showMessage(signupMsg, "Name is required.");
+  if (!email) return showMessage(signupMsg, "Email is required.");
+  if (!validateEmail(email)) return showMessage(signupMsg, "Invalid email format.");
+  if (!password) return showMessage(signupMsg, "Password is required.");
+  if (!validatePassword(password)) return showMessage(signupMsg, "Password must be 4-16 characters.");
+  if (!confirmPassword) return showMessage(signupMsg, "Please confirm your password.");
+  if (password !== confirmPassword) return showMessage(signupMsg, "Passwords do not match.");
 
   try {
     const response = await fetch(`${BACKEND_URL}/api/users/register`, {
@@ -35,31 +55,35 @@ signupForm.addEventListener("submit", async (e) => {
     const data = text ? JSON.parse(text) : {};
 
     if (response.ok && data.success) {
-      signupMsg.textContent = "Signup successful—please log in.";
-      signupMsg.className = "message-container success";
+      showMessage(signupMsg, "Signup successful—please log in.", "success");
       signupForm.reset();
       switchForm("login");
     } else {
-      signupMsg.textContent = data.data || "Signup failed.";
-      signupMsg.className = "message-container error";
+      // Handle specific backend errors
+      if (response.status === 409) {
+        showMessage(signupMsg, "This email is already in use. Please use a different one.");
+      } else if (response.status === 400) {
+        showMessage(signupMsg, data.message || "Invalid input. Please review your information.");
+      } else {
+        showMessage(signupMsg, data.message || "Signup failed. Please try again.");
+      }
     }
   } catch (err) {
-    signupMsg.textContent = "Signup error: " + err.message;
-    signupMsg.className = "message-container error";
+    showMessage(signupMsg, "Signup error: " + err.message);
   }
-});
+}
 
-loginForm.addEventListener("submit", async (e) => {
+
+async function login(e) {
   e.preventDefault();
 
-  const email = loginForm["login-email"].value.trim();
-  const password = loginForm["login-password"].value;
+  const email = loginForm["login-email"]?.value.trim();
+  const password = loginForm["login-password"]?.value.trim();
 
-  if (!email || !password) {
-    loginMsg.textContent = "Please enter both email and password.";
-    loginMsg.className = "message-container error";
-    return;
-  }
+  if (!email) return showMessage(loginMsg, "Email is required.");
+  if (!validateEmail(email)) return showMessage(loginMsg, "Invalid email format.");
+  if (!password) return showMessage(loginMsg, "Password is required.");
+  if (!validatePassword(password)) return showMessage(loginMsg, "Password must be 4-16 characters.");
 
   try {
     const response = await fetch(`${BACKEND_URL}/api/users/login`, {
@@ -68,18 +92,22 @@ loginForm.addEventListener("submit", async (e) => {
       body: JSON.stringify({ email, password }),
     });
 
-    const data = await response.json();
+    const text = await response.text();
+    const data = text ? JSON.parse(text) : {};
 
     if (response.ok && data.success) {
       const { id, name, email } = data.data;
       localStorage.setItem("currentUser", JSON.stringify({ id, name, email }));
-      window.location.href = "index.html"; 
+      window.location.href = "index.html";
     } else {
-      loginMsg.textContent = data.data || "Invalid email or password.";
-      loginMsg.className = "message-container error";
+      const errorMessage =
+        data.message || data.data || "Invalid email or password.";
+      showMessage(loginMsg, errorMessage);
     }
   } catch (err) {
-    loginMsg.textContent = "Login error: " + err.message;
-    loginMsg.className = "message-container error";
+    showMessage(loginMsg, "Login error: " + err.message);
   }
-});
+}
+
+signupForm.addEventListener("submit", signup);
+loginForm.addEventListener("submit", login);
