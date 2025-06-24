@@ -186,6 +186,37 @@ body {
   stroke: #6b6969;
 }
 
+.cart-box {
+  position: relative;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.cart-box .cart-icon {
+  width: 28px;
+  height: 28px;
+  color: #333;
+}
+
+.count{
+  position: absolute;
+  top: -8px;
+  right: -8px;
+  background-color: #ff3e3e;
+  color: white;
+  font-size: 12px;
+  font-weight: bold;
+  padding: 2px 6px;
+  border-radius: 50%;
+  display: inline-block;
+  min-width: 20px;
+  text-align: center;
+  box-shadow: 0 0 3px rgba(0, 0, 0, 0.2);
+}
+
+
 .images-box {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
@@ -230,7 +261,7 @@ body {
   font-size: 12px;
   font-weight: 600;
   text-transform: capitalize;
-  padding: 4px 8px;
+  padding: 8px 12px;
   background-color: #28ee6a;
   transition: background-color 0.3s ease;
 }
