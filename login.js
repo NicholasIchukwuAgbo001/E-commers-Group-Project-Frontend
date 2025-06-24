@@ -28,8 +28,8 @@ function validatePassword(password) {
   return password.length >= 4 && password.length <= 16;
 }
 
-async function signup(e) {
-  e.preventDefault();
+async function signup(element) {
+  element.preventDefault();
 
   const name = signupForm["signup-name"]?.value.trim();
   const email = signupForm["signup-email"]?.value.trim();
@@ -59,7 +59,7 @@ async function signup(e) {
       signupForm.reset();
       switchForm("login");
     } else {
-      // Handle specific backend errors
+
       if (response.status === 409) {
         showMessage(signupMsg, "This email is already in use. Please use a different one.");
       } else if (response.status === 400) {
@@ -73,9 +73,8 @@ async function signup(e) {
   }
 }
 
-
-async function login(e) {
-  e.preventDefault();
+async function login(element) {
+  element.preventDefault();
 
   const email = loginForm["login-email"]?.value.trim();
   const password = loginForm["login-password"]?.value.trim();
