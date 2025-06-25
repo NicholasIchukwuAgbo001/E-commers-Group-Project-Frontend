@@ -39,12 +39,13 @@ fetchProducts(PRODUCT_URL);
 
 function displayProducts(products) {
   imagesBox.innerHTML = "";
-  products.forEach(({ thumbnail, category, price, discountPercentage, rating }) => {
+  products.forEach(({ title, thumbnail, category, price, discountPercentage, rating }) => {
     const card = document.createElement("div");
     card.className = "product-card";
     card.innerHTML = `
-      <div class="cart-icon-img"><ion-icon name="cart-outline"></ion-icon></div>
+      <div class="cart-icon-img"><ion-icon class="cart-icon-inner" name="cart-outline"></ion-icon></div>
       <img src="${thumbnail}" alt="Product: ${category}" onerror="this.src='https://via.placeholder.com/200';" />
+      <h3 class="product-name">${title}</h3>
       <div class="categoryAndPrice">
         <p>${category}</p>
         <span>$${price}</span>
@@ -52,7 +53,8 @@ function displayProducts(products) {
       <div class="product-rating">
         <span>⭐⭐⭐ ${rating}</span>
         <span class="discount">-${Math.round(discountPercentage)}%</span>
-      </div>`;
+      </div>
+    `;
     imagesBox.appendChild(card);
   });
 }

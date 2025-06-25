@@ -294,6 +294,12 @@ body {
   border: 1px solid #d63031;
 }
 
+.product-name {
+  font-size: 14px;
+  font-weight: 600;
+  margin-bottom: 5px;
+}
+
 .cart-icon-img {
   position: absolute;
   top: 10px;
@@ -310,6 +316,10 @@ body {
 
 .cart-icon-img:hover {
   background-color: #f0f0f0;
+}
+
+.cart-icon-inner{
+  font-size: 25px;
 }
 
 .see-more-btn {
