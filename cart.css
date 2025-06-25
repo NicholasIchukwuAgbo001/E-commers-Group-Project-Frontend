@@ -142,7 +142,7 @@ body {
 
 .best-selling-box, 
 .support-box, 
-.categories-box {
+.home-box {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -156,7 +156,7 @@ body {
 .best-selling-box:hover, 
 .support-box:hover, 
 .new-box:hover, 
-.categories-box:hover {
+.home-box:hover {
   background-color: #f0f0f0;
   border-radius: 30px;
 }
