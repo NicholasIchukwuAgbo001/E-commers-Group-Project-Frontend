@@ -3,20 +3,21 @@ const imagesBox = document.querySelector(".images-box");
 const searchBar = document.querySelector(".search-bar input");
 const cartCountSpan = document.querySelector(".cart-box .count");
 const loginLink = document.getElementById("login-link");
-const userInfo   = document.getElementById("user-info");
-const emailDisp  = document.querySelector(".user-email-display");
-const logoutBtn  = document.getElementById("logout-btn");
+const userInfo = document.getElementById("user-info");
+const emailDisp = document.querySelector(".user-email-display");
+const logoutBtn = document.getElementById("logout-btn");
 
 let cartCount = 0;
 
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
-if (currentUser && currentUser.email) {
+
+if (currentUser?.email) {
   loginLink.style.display = "none";
   userInfo.style.display = "flex";
-  emailDisp.textContent   = currentUser.email;
+  emailDisp.textContent = currentUser.email;
 } else {
   loginLink.style.display = "flex";
-  userInfo.style.display  = "none";
+  userInfo.style.display = "none";
 }
 
 logoutBtn.addEventListener("click", () => {
@@ -26,7 +27,7 @@ logoutBtn.addEventListener("click", () => {
 
 async function fetchProducts(url) {
   try {
-    const res  = await fetch(url);
+    const res = await fetch(url);
     const { products } = await res.json();
     displayProducts(products);
   } catch (err) {
@@ -34,6 +35,7 @@ async function fetchProducts(url) {
   }
 }
 fetchProducts(PRODUCT_URL);
+
 
 function displayProducts(products) {
   imagesBox.innerHTML = "";
@@ -43,8 +45,12 @@ function displayProducts(products) {
     card.innerHTML = `
       <div class="cart-icon-img"><ion-icon name="cart-outline"></ion-icon></div>
       <img src="${thumbnail}" alt="Product: ${category}" onerror="this.src='https://via.placeholder.com/200';" />
-      <div class="categoryAndPrice"><p>${category}</p><span>$${price}</span></div>
-      <div class="product-rating"><span>⭐⭐⭐ ${rating}</span>
+      <div class="categoryAndPrice">
+        <p>${category}</p>
+        <span>$${price}</span>
+      </div>
+      <div class="product-rating">
+        <span>⭐⭐⭐ ${rating}</span>
         <span class="discount">-${Math.round(discountPercentage)}%</span>
       </div>`;
     imagesBox.appendChild(card);
