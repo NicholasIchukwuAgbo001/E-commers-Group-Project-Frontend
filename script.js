@@ -73,7 +73,7 @@ imagesBox.addEventListener("click", e => {
 searchBar.addEventListener("input", e => {
   const term = e.target.value.toLowerCase();
   document.querySelectorAll(".product-card").forEach(card => {
-    const cat = card.querySelector(".categoryAndPrice p").textContent.toLowerCase();
+    const cat = card.querySelector(".product-name").textContent.toLowerCase();
     card.style.display = cat.includes(term) ? "block" : "none";
   });
 });
