@@ -218,6 +218,35 @@ body {
   align-self: center;
 }
 
+#hero-section {
+  position: relative;
+  height: 50vh; 
+  width: 100%;
+  overflow: hidden;
+}
+
+#hero-section video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+}
+
+#hero-section::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); 
+}
+
 .images-box {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(190px, 1fr));
