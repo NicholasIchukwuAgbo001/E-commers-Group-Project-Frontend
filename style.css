@@ -38,32 +38,38 @@ body {
   gap: 5px;
 }
 
-.header-icon-one, .header-icon-two, .user-icon {
+.header-icon-one, 
+.header-icon-two, .user-icon {
   font-size: 26px;
 }
 
 .header-icon-one { color: #a2f3ad; }
 .header-icon-two { color: #e0f88b; }
 
-.header-text-one h3, .header-text-one span {
+.header-text-one h3, 
+.header-text-one span {
   color: #a2f3ad;
 }
 
-.header-text-two h3, .header-text-two span {
+.header-text-two h3, 
+.header-text-two span {
   color: #def197;
 }
 
-.header-text-one h3, .header-text-two h3 {
+.header-text-one h3, 
+.header-text-two h3 {
   font-size: 17px;
   font-weight: 700;
 }
 
-.header-text-one span, .header-text-two span {
+.header-text-one span, 
+.header-text-two span {
   font-size: 14px;
   font-weight: 500;
 }
 
-.header-text-one:hover, .header-text-two:hover {
+.header-text-one:hover, 
+.header-text-two:hover {
   text-decoration: underline;
   cursor: pointer;
 }
@@ -134,7 +140,9 @@ body {
   color: #111;
 }
 
-.best-selling-box, .support-box, .categories-box {
+.best-selling-box, 
+.support-box, 
+.categories-box {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -145,7 +153,10 @@ body {
   cursor: pointer;
 }
 
-.best-selling-box:hover, .support-box:hover, .new-box:hover, .categories-box:hover {
+.best-selling-box:hover, 
+.support-box:hover, 
+.new-box:hover, 
+.categories-box:hover {
   background-color: #f0f0f0;
   border-radius: 30px;
 }
@@ -156,7 +167,9 @@ body {
   font-weight: 500;
 }
 
-.best-selling-icon, .support-icon, .cart-icon {
+.best-selling-icon, 
+.support-icon, 
+.cart-icon {
   width: 35px;
   height: 28px;
   stroke: #000;
@@ -164,7 +177,9 @@ body {
   cursor: pointer;
 }
 
-.cart-icon:hover, .best-selling-icon:hover, .support-icon:hover {
+.cart-icon:hover, 
+.best-selling-icon:hover, 
+.support-icon:hover {
   stroke: #6b6969;
 }
 
