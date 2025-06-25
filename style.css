@@ -427,6 +427,10 @@ footer {
   font-size: 30px;
 }
 
+.social-icons-main:hover{
+  cursor: pointer;
+}
+
 .payment-images h4  {
   padding: 15px 13px;
 }
@@ -440,6 +444,10 @@ footer {
   width: 70px;
   height: 30px;
   object-fit: contain;
+}
+
+.payment-img-box img:hover{
+  cursor: pointer;
 }
 
 .copy-right {
