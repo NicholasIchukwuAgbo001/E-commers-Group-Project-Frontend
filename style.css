@@ -223,6 +223,7 @@ body {
   height: 50vh; 
   width: 100%;
   overflow: hidden;
+  box-shadow: 0 2px 8px rgba(15, 15, 15, 0.884);
 }
 
 #hero-section video {
@@ -234,6 +235,20 @@ body {
   min-height: 100%;
   object-fit: cover;
 }
+
+#hero-section p {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  font-size: 48px;
+  font-weight: 700;
+  color: #FAFAFA;
+  text-align: center;
+  z-index: 300;
+  text-decoration: underline;
+}
+
 
 .images-box {
   display: grid;
