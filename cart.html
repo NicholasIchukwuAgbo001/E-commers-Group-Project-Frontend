@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="cart.css">
+  <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
+  <title>E-commerce Website cart</title>
+</head>
+<body>  
+  <div id="wrapper">
+    <header id="header">
+      <div class="top-header">
+        <div class="free-shipping">
+          <ion-icon class="header-icon-one" name="car-sport-outline"></ion-icon>
+          <div class="header-text-one">
+            <h3>Free Shipping on all Orders »</h3>
+            <span>limited-time-offer</span>
+          </div>
+        </div>
+        <div class="free-shipping">
+          <ion-icon class="header-icon-two" name="bus-outline"></ion-icon>
+          <div class="header-text-two">
+            <h3>Delivery guarantee</h3>
+            <span>Refund for any issues</span>
+          </div>
+        </div>
+        <div class="free-shipping">
+          <ion-icon class="header-icon-two" name="phone-portrait-outline"></ion-icon>
+          <div class="header-text-two"><h3>Get the App</h3></div>
+        </div>
+      </div>
+
+      <div class="bottom-header">
+        <a href="index.html"><img class="logo" src="images/jumia.png" alt="Logo"/></a>
+
+        <div class="best-selling-box">
+          <ion-icon class="best-selling-icon" name="star-outline"></ion-icon>
+          <span>Best-selling items</span>
+        </div>
+
+        <div class="best-selling-box">
+          <ion-icon class="best-selling-icon" name="sparkles-outline"></ion-icon>
+          <span>5-star Rating</span>
+        </div>
+
+        <div class="categories-box"><span>Categories</span></div>
+
+        <div class="search-bar">
+          <input type="text" placeholder="Search for products, brands and more" />
+          <button type="submit"><ion-icon name="search-outline"></ion-icon></button>
+        </div>
+
+        <div class="user-box">
+
+          <a id="login-link" class="user-account-box" href="login.html">
+            <ion-icon class="user-icon" name="person-add-outline"></ion-icon>
+            <span>Account<span>
+          </a>
+        </div>
+
+        <div class="support-box">
+          <ion-icon class="support-icon" name="chatbubble-outline"></ion-icon>
+          <span>Support</span>
+        </div>
+
+        <div id="user-info">
+          <span class="user-name-display"></span>
+          <button id="logout-btn">Logout</button>
+        </div>
+
+      </div>
+    </header>
+  </div>
+  <script src="script.js"></script>
+</body>
+</html>
