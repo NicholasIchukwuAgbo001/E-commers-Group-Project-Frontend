@@ -180,13 +180,3 @@ body {
 .support-icon:hover {
   stroke: #6b6969;
 }
-
-.user-name-display{
-  font-size: 13px;
-  margin: 0 10px;
-  align-self: center;
-  padding: 0 10px;
-  border-left: 2px solid #111;
-  border-right: 2px solid #111;
-  cursor: pointer;
-}
