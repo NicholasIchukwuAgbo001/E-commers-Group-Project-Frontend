@@ -4,7 +4,7 @@ const searchBar = document.querySelector(".search-bar input");
 const cartCountSpan = document.querySelector(".cart-box .count");
 const loginLink = document.getElementById("login-link");
 const userInfo = document.getElementById("user-info");
-const emailDisp = document.querySelector(".user-email-display");
+const nameDisp = document.querySelector(".user-name-display");
 const logoutBtn = document.getElementById("logout-btn");
 
 let cartCount = 0;
@@ -14,7 +14,7 @@ const currentUser = JSON.parse(localStorage.getItem("currentUser"));
 if (currentUser?.email) {
   loginLink.style.display = "none";
   userInfo.style.display = "flex";
-  emailDisp.textContent = currentUser.email;
+  nameDisp.textContent = currentUser.name;
 } else {
   loginLink.style.display = "flex";
   userInfo.style.display = "none";
