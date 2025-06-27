@@ -1,5 +1,4 @@
 const BACKEND_URL = "http://localhost:1111";
-
 const loginForm = document.getElementById("login-form");
 const signupForm = document.getElementById("signup-form");
 const loginMsg = document.getElementById("login-message-container");

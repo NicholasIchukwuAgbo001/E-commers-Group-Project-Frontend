@@ -8,8 +8,18 @@ const nameDisp = document.querySelector(".user-name-display");
 const logoutBtn = document.getElementById("logout-btn");
 
 let cartCount = 0;
-
 const currentUser = JSON.parse(localStorage.getItem("currentUser"));
+
+async function fetchProducts(url) {
+  try {
+    const res = await fetch(url);
+    const { products } = await res.json();
+    displayProducts(products);
+  } catch (err) {
+    console.error("Fetch error:", err);
+  }
+}
+fetchProducts(PRODUCT_URL);
 
 if (currentUser?.email) {
   loginLink.style.display = "none";
@@ -25,18 +35,6 @@ logoutBtn.addEventListener("click", () => {
   location.reload();
 });
 
-async function fetchProducts(url) {
-  try {
-    const res = await fetch(url);
-    const { products } = await res.json();
-    displayProducts(products);
-  } catch (err) {
-    console.error("Fetch error:", err);
-  }
-}
-fetchProducts(PRODUCT_URL);
-
-
 function displayProducts(products) {
   imagesBox.innerHTML = "";
   products.forEach(({ title, thumbnail, category, price, discountPercentage, rating }) => {
@@ -51,7 +49,7 @@ function displayProducts(products) {
         <span>$${price}</span>
       </div>
       <div class="product-rating">
-        <span>⭐⭐⭐ ${rating}</span>
+        <span>⭐⭐⭐⭐ ${rating}</span>
         <span class="discount">-${Math.round(discountPercentage)}%</span>
       </div>
     `;
@@ -59,8 +57,8 @@ function displayProducts(products) {
   });
 }
 
-imagesBox.addEventListener("click", e => {
-  if (e.target.closest(".cart-icon-img")) {
+imagesBox.addEventListener("click", element => {
+  if (element.target.closest(".cart-icon-img")) {
     if (!currentUser) {
       alert("Please login to add items to cart");
       return;
@@ -70,10 +68,10 @@ imagesBox.addEventListener("click", e => {
   }
 });
 
-searchBar.addEventListener("input", e => {
-  const term = e.target.value.toLowerCase();
+searchBar.addEventListener("input", element => {
+  const term = element.target.value.toLowerCase();
   document.querySelectorAll(".product-card").forEach(card => {
-    // const cat = card.querySelector(".product-name").textContent.toLowerCase();
-    card.style.display = cat.includes(term) ? "block" : "none";
+    const name = card.querySelector(".product-name").textContent.toLowerCase();
+    card.style.display = name.includes(term) ? "block" : "none";
   });
 });
